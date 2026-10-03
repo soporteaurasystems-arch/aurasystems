@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Systems | Software, Web e IA para Empresas</title>
+    <!-- Tailwind CSS para un diseño limpio y rápido -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#0B0F19',
+                        brandCard: '#131C31',
+                        brandBlue: '#00F0FF',
+                        brandPurple: '#7000FF'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glow-effect {
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.15);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #00F0FF 0%, #7000FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-brandDark text-gray-100 font-sans antialiased selection:bg-brandBlue selection:text-brandDark">
+
+    <!-- HEADER / NAVEGACIÓN -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-brandDark/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brandBlue to-brandPurple flex items-center justify-center glow-effect">
+                    <i class="fa-solid fa-cube text-brandDark font-bold text-xl"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-wider text-white">AURA <span class="text-brandBlue">SYSTEMS</span></span>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                <a href="#inicio" class="hover:text-brandBlue transition">Inicio</a>
+                <a href="#servicios" class="hover:text-brandBlue transition">Servicios</a>
+                <a href="#beneficios" class="hover:text-brandBlue transition">Por qué elegirnos</a>
+                <a href="#contacto" class="hover:text-brandBlue transition">Contacto</a>
+            </nav>
+            <div>
+                <a href="#contacto" class="hidden md:inline-block px-5 py-2.5 rounded-full bg-gradient-to-r from-brandBlue to-blue-600 text-brandDark font-bold text-sm hover:opacity-90 transition shadow-lg shadow-cyan-500/20">
+                    Cotizar Proyecto
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="pt-32 pb-20 md:pt-44 md:pb-32 relative overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brandBlue/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 text-center relative z-10" data-aos="fade-up" data-aos-duration="1000">
+            <span class="inline-block py-1 px-4 rounded-full bg-brandCard border border-gray-800 text-brandBlue text-xs font-semibold uppercase tracking-widest mb-6">
+                Tecnología B2B de Vanguardia
+            </span>
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
+                Impulsamos tu empresa con <span class="text-gradient">Software e Inteligencia Artificial</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+                Desarrollamos páginas web funcionales, sistemas a la medida y asistentes de IA diseñados para automatizar y escalar cualquier tipo de negocio.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contacto" class="px-8 py-4 rounded-xl bg-brandBlue text-brandDark font-bold hover:bg-cyan-400 transition shadow-lg shadow-cyan-500/25">
+                    Comenzar Ahora <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#servicios" class="px-8 py-4 rounded-xl bg-brandCard border border-gray-800 text-white font-semibold hover:border-gray-600 transition">
+                    Ver Soluciones
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE SERVICIOS -->
+    <section id="servicios" class="py-20 bg-gray-950/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-4">Nuestras Soluciones</h2>
+                <p class="text-gray-400">Herramientas digitales robustas creadas específicamente para optimizar la operatividad de tu empresa.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 hover:border-brandBlue/50 transition duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-xl bg-brandBlue/10 flex items-center justify-center text-brandBlue text-2xl mb-6 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Software a la Medida</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Creamos sistemas internos y aplicaciones escalables ajustadas exactamente a los flujos de trabajo de tu empresa.
+                    </p>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 hover:border-brandBlue/50 transition duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Páginas Web Funcionales</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Sitios web modernos, veloces y optimizados para convertir visitantes en clientes frecuentes y potenciar tu marca.
+                    </p>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 hover:border-brandBlue/50 transition duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-2xl mb-6 group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Asistencia con IA</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Integramos Inteligencia Artificial para automatizar atención al cliente, análisis de datos y procesos repetitivos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POR QUÉ ELEGIRNOS -->
+    <section id="beneficios" class="py-20">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <span class="text-brandBlue text-xs font-semibold uppercase tracking-widest">Eficiencia Comprobada</span>
+                <h2 class="text-3xl md:text-4xl font-black mt-2 mb-6">Llevamos tu negocio al siguiente nivel tecnológico</h2>
+                <p class="text-gray-400 mb-8 leading-relaxed">
+                    Entendemos las necesidades reales del mercado. No solo entregamos código, entregamos soluciones prácticas que reducen costos operativos y aumentan la productividad.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-circle-check text-brandBlue"></i>
+                        <span class="font-medium text-gray-200">Desarrollo enfocado en resultados comerciales</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-circle-check text-brandBlue"></i>
+                        <span class="font-medium text-gray-200">Soporte técnico continuo y actualizaciones</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-circle-check text-brandBlue"></i>
+                        <span class="font-medium text-gray-200">Escalabilidad garantizada para tu crecimiento</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-brandCard p-8 rounded-3xl border border-gray-800 glow-effect" data-aos="fade-left">
+                <div class="space-y-6">
+                    <div class="border-l-4 border-brandBlue pl-4">
+                        <h4 class="font-bold text-lg">Optimización de Procesos</h4>
+                        <p class="text-sm text-gray-400">Automatiza tareas manuales y ahorra horas de trabajo cada semana.</p>
+                    </div>
+                    <div class="border-l-4 border-purple-500 pl-4">
+                        <h4 class="font-bold text-lg">Presencia Digital Sólida</h4>
+                        <p class="text-sm text-gray-400">Destaca frente a la competencia con herramientas de nivel corporativo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CONTACTO -->
+    <section id="contacto" class="py-20 bg-gray-950/50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-brandCard p-8 md:p-12 rounded-3xl border border-gray-800 shadow-2xl" data-aos="zoom-in">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold mb-3">Hablemos de tu Proyecto</h2>
+                    <p class="text-gray-400 text-sm">Déjanos tus datos y nos pondremos en contacto contigo muy pronto.</p>
+                </div>
+                <form class="space-y-6" onsubmit="event.preventDefault(); alert('¡Gracias por tu mensaje! Nos pondremos en contacto pronto.');">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Nombre</label>
+                            <input type="text" required class="w-full bg-brandDark border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brandBlue transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Correo Electrónico</label>
+                            <input type="email" required class="w-full bg-brandDark border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brandBlue transition">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Mensaje o Requerimiento</label>
+                        <textarea rows="4" required class="w-full bg-brandDark border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brandBlue transition"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brandBlue to-blue-600 text-brandDark font-bold hover:opacity-90 transition shadow-lg shadow-cyan-500/20">
+                        Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-10 border-t border-gray-800 text-center text-sm text-gray-500">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Aura Systems. Todos los derechos reservados.</p>
+            <div class="flex space-x-6">
+                <a href="mailto:soporte.aurasystems@gmail.com" class="hover:text-brandBlue transition"><i class="fa-solid fa-envelope mr-2"></i>soporte.aurasystems@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Script Initialization -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
+</body>
+</html>
