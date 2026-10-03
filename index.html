@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aura Systems - Software a la medida, desarrollo web e Inteligencia Artificial para empresas. Automatiza y escala tu negocio.">
+    <meta name="keywords" content="software, desarrollo web, inteligencia artificial, IA, automatización, empresas, B2B">
+    <meta name="author" content="Aura Systems">
+    <meta property="og:title" content="Aura Systems | Software, Web e IA para Empresas">
+    <meta property="og:description" content="Desarrollamos software, web e IA que transforman tu negocio.">
+    <meta property="og:type" content="website">
+    <title>Aura Systems | Software, Web e IA para Empresas</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#05070D',
+                        brandCard: '#0F172A',
+                        brandBlue: '#00F0FF',
+                        brandPurple: '#7000FF',
+                        brandPink: '#FF00E5'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'marquee': 'marquee 30s linear infinite',
+                        'spin-slow': 'spin 20s linear infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.4)' },
+                            '50%': { boxShadow: '0 0 40px rgba(0, 240, 255, 0.8)' }
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' }
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { scroll-behavior: smooth; }
+        body { overflow-x: hidden; }
+        
+        .glow-effect { box-shadow: 0 0 40px rgba(0, 240, 255, 0.15); }
+        .glow-purple { box-shadow: 0 0 40px rgba(112, 0, 255, 0.25); }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #00F0FF 0%, #7000FF 50%, #FF00E5 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 4s ease infinite;
+        }
+        
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+        }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+            background: rgba(15, 23, 42, 0.8);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.15);
+        }
+        
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .btn-shine:hover::before { left: 100%; }
+        
+        /* Cursor personalizado */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .cursor-dot { width: 8px; height: 8px; background: #00F0FF; }
+        .cursor-outline {
+            width: 40px; height: 40px;
+            border: 2px solid rgba(0, 240, 255, 0.5);
+            transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
+        }
+        @media (max-width: 768px) {
+            .cursor-dot, .cursor-outline { display: none; }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #05070D; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #00F0FF, #7000FF);
+            border-radius: 10px;
+        }
+        
+        /* Marquee */
+        .marquee-container {
+            mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+        }
+        
+        /* Nav activo */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, #00F0FF, #7000FF);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* Partículas */
+        #particles {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            background: #00F0FF;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: particleFloat linear infinite;
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+        
+        /* Número animado */
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Form focus */
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15);
+        }
+        
+        /* Progress bar */
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00F0FF, #7000FF, #FF00E5);
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s;
+        }
+        
+        /* Back to top */
+        #back-to-top {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        
+        /* Tilt effect */
+        .tilt-card { transition: transform 0.3s; transform-style: preserve-3d; }
+    </style>
+</head>
+<body class="bg-brandDark text-gray-100 font-sans antialiased selection:bg-brandBlue selection:text-brandDark">
+
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+    
+    <!-- Cursor personalizado -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
+    <!-- HEADER / NAVEGACIÓN -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#inicio" class="flex items-center space-x-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brandBlue via-brandPurple to-brandPink flex items-center justify-center glow-effect group-hover:scale-110 transition-transform duration-300">
+                    <i class="fa-solid fa-cube text-white font-bold text-xl"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-wider text-white font-display">AURA<span class="text-gradient">SYSTEMS</span></span>
+            </a>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="#inicio" class="nav-link hover:text-brandBlue transition">Inicio</a>
+                <a href="#servicios" class="nav-link hover:text-brandBlue transition">Servicios</a>
+                <a href="#proceso" class="nav-link hover:text-brandBlue transition">Proceso</a>
+                <a href="#beneficios" class="nav-link hover:text-brandBlue transition">Beneficios</a>
+                <a href="#contacto" class="nav-link hover:text-brandBlue transition">Contacto</a>
+            </nav>
+            
+            <div class="flex items-center gap-3">
+                <a href="#contacto" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-brandBlue to-brandPurple text-white font-bold text-sm hover:opacity-90 transition shadow-lg shadow-cyan-500/25 btn-shine">
+                    <i class="fa-solid fa-rocket"></i> Cotizar Proyecto
+                </a>
+                
+                <!-- Mobile menu button -->
+                <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-lg glass-card flex items-center justify-center text-white">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden glass-card border-t border-gray-800">
+            <nav class="px-6 py-4 flex flex-col space-y-3">
+                <a href="#inicio" class="py-2 text-gray-300 hover:text-brandBlue transition">Inicio</a>
+                <a href="#servicios" class="py-2 text-gray-300 hover:text-brandBlue transition">Servicios</a>
+                <a href="#proceso" class="py-2 text-gray-300 hover:text-brandBlue transition">Proceso</a>
+                <a href="#beneficios" class="py-2 text-gray-300 hover:text-brandBlue transition">Beneficios</a>
+                <a href="#contacto" class="py-2 text-gray-300 hover:text-brandBlue transition">Contacto</a>
+                <a href="#contacto" class="mt-2 text-center px-5 py-3 rounded-xl bg-gradient-to-r from-brandBlue to-brandPurple text-white font-bold text-sm">Cotizar Proyecto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="pt-32 pb-20 md:pt-44 md:pb-32 relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg"></div>
+        <div id="particles"></div>
+        
+        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brandBlue/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-brandPurple/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <span class="inline-flex items-center gap-2 py-2 px-4 rounded-full glass-card text-brandBlue text-xs font-semibold uppercase tracking-widest mb-8">
+                    <span class="w-2 h-2 rounded-full bg-brandBlue animate-ping"></span>
+                    Tecnología B2B de Vanguardia
+                </span>
+            </div>
+            
+            <h1 class="text-4xl md:text-7xl font-black tracking-tight mb-6 max-w-5xl mx-auto leading-[1.1] font-display" data-aos="fade-up" data-aos-delay="100">
+                Impulsamos tu empresa con <span class="text-gradient">Software e Inteligencia Artificial</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="200">
+                Desarrollamos páginas web funcionales, sistemas a la medida y asistentes de IA diseñados para <span class="text-white font-semibold">automatizar y escalar</span> cualquier tipo de negocio.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16" data-aos="fade-up" data-aos-delay="300">
+                <a href="#contacto" class="group px-8 py-4 rounded-xl bg-gradient-to-r from-brandBlue to-brandPurple text-white font-bold hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 btn-shine inline-flex items-center justify-center gap-2">
+                    Comenzar Ahora 
+                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#servicios" class="px-8 py-4 rounded-xl glass-card text-white font-semibold hover:border-brandBlue/50 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-play text-brandBlue"></i> Ver Soluciones
+                </a>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="400">
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="text-3xl md:text-4xl font-black text-gradient stat-number" data-target="150">0</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Proyectos</div>
+                </div>
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="text-3xl md:text-4xl font-black text-gradient stat-number" data-target="98">0</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">% Satisfacción</div>
+                </div>
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="text-3xl md:text-4xl font-black text-gradient stat-number" data-target="24">0</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">/7 Soporte</div>
+                </div>
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="text-3xl md:text-4xl font-black text-gradient stat-number" data-target="10">0</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">+ Años Exp.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE TECH -->
+    <section class="py-8 border-y border-gray-800/50 overflow-hidden">
+        <div class="marquee-container">
+            <div class="flex animate-marquee whitespace-nowrap">
+                <div class="flex items-center gap-16 px-8 text-2xl text-gray-500">
+                    <i class="fa-brands fa-react hover:text-brandBlue transition"></i>
+                    <i class="fa-brands fa-node-js hover:text-green-500 transition"></i>
+                    <i class="fa-brands fa-python hover:text-yellow-500 transition"></i>
+                    <i class="fa-brands fa-js hover:text-yellow-400 transition"></i>
+                    <i class="fa-brands fa-aws hover:text-orange-500 transition"></i>
+                    <i class="fa-brands fa-docker hover:text-blue-500 transition"></i>
+                    <i class="fa-brands fa-github hover:text-white transition"></i>
+                    <i class="fa-brands fa-google hover:text-red-500 transition"></i>
+                    <i class="fa-solid fa-database hover:text-brandBlue transition"></i>
+                    <i class="fa-solid fa-brain hover:text-brandPurple transition"></i>
+                </div>
+                <div class="flex items-center gap-16 px-8 text-2xl text-gray-500">
+                    <i class="fa-brands fa-react hover:text-brandBlue transition"></i>
+                    <i class="fa-brands fa-node-js hover:text-green-500 transition"></i>
+                    <i class="fa-brands fa-python hover:text-yellow-500 transition"></i>
+                    <i class="fa-brands fa-js hover:text-yellow-400 transition"></i>
+                    <i class="fa-brands fa-aws hover:text-orange-500 transition"></i>
+                    <i class="fa-brands fa-docker hover:text-blue-500 transition"></i>
+                    <i class="fa-brands fa-github hover:text-white transition"></i>
+                    <i class="fa-brands fa-google hover:text-red-500 transition"></i>
+                    <i class="fa-solid fa-database hover:text-brandBlue transition"></i>
+                    <i class="fa-solid fa-brain hover:text-brandPurple transition"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE SERVICIOS -->
+    <section id="servicios" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-brandBlue text-xs font-semibold uppercase tracking-widest">Lo que hacemos</span>
+                <h2 class="text-4xl md:text-5xl font-black mb-4 mt-3 font-display">Nuestras <span class="text-gradient">Soluciones</span></h2>
+                <p class="text-gray-400">Herramientas digitales robustas creadas específicamente para optimizar la operatividad de tu empresa.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="glass-card p-8 rounded-3xl transition-all duration-500 group cursor-pointer tilt-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brandBlue/20 to-brandBlue/5 flex items-center justify-center text-brandBlue text-3xl mb-6 group-hover:scale-110 group-hover:rotate-6 transition duration-300">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-display">Software a la Medida</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Creamos sistemas internos y aplicaciones escalables ajustadas exactamente a los flujos de trabajo de tu empresa.
+                    </p>
+                    <ul class="space-y-2 text-xs text-gray-500 mb-6">
+                        <li><i class="fa-solid fa-check text-brandBlue mr-2"></i>APIs REST & GraphQL</li>
+                        <li><i class="fa-solid fa-check text-brandBlue mr-2"></i>Dashboards administrativos</li>
+                        <li><i class="fa-solid fa-check text-brandBlue mr-2"></i>Integración con sistemas existentes</li>
+                    </ul>
+                    <span class="text-brandBlue text-sm font-semibold group-hover:gap-2 inline-flex items-center transition-all">
+                        Saber más <i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition"></i>
+                    </span>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="glass-card p-8 rounded-3xl transition-all duration-500 group cursor-pointer tilt-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brandPurple/20 to-brandPurple/5 flex items-center justify-center text-brandPurple text-3xl mb-6 group-hover:scale-110 group-hover:rotate-6 transition duration-300">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-display">Páginas Web Funcionales</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Sitios web modernos, veloces y optimizados para convertir visitantes en clientes frecuentes y potenciar tu marca.
+                    </p>
+                    <ul class="space-y-2 text-xs text-gray-500 mb-6">
+                        <li><i class="fa-solid fa-check text-brandPurple mr-2"></i>Diseño responsive</li>
+                        <li><i class="fa-solid fa-check text-brandPurple mr-2"></i>SEO optimizado</li>
+                        <li><i class="fa-solid fa-check text-brandPurple mr-2"></i>E-commerce integrado</li>
+                    </ul>
+                    <span class="text-brandPurple text-sm font-semibold group-hover:gap-2 inline-flex items-center transition-all">
+                        Saber más <i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition"></i>
+                    </span>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="glass-card p-8 rounded-3xl transition-all duration-500 group cursor-pointer tilt-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brandPink/20 to-brandPink/5 flex items-center justify-center text-brandPink text-3xl mb-6 group-hover:scale-110 group-hover:rotate-6 transition duration-300">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-display">Asistencia con IA</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Integramos Inteligencia Artificial para automatizar atención al cliente, análisis de datos y procesos repetitivos.
+                    </p>
+                    <ul class="space-y-2 text-xs text-gray-500 mb-6">
+                        <li><i class="fa-solid fa-check text-brandPink mr-2"></i>Chatbots inteligentes</li>
+                        <li><i class="fa-solid fa-check text-brandPink mr-2"></i>Análisis predictivo</li>
+                        <li><i class="fa-solid fa-check text-brandPink mr-2"></i>Automatización de tareas</li>
+                    </ul>
+                    <span class="text-brandPink text-sm font-semibold group-hover:gap-2 inline-flex items-center transition-all">
+                        Saber más <i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section id="proceso" class="py-24 bg-gray-950/50 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-brandPurple/5 rounded-full blur-[150px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-brandBlue text-xs font-semibold uppercase tracking-widest">Cómo trabajamos</span>
+                <h2 class="text-4xl md:text-5xl font-black mb-4 mt-3 font-display">Nuestro <span class="text-gradient">Proceso</span></h2>
+                <p class="text-gray-400">Metodología ágil en 4 pasos para llevar tu idea al siguiente nivel.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+                <!-- Línea conectora -->
+                <div class="hidden md:block absolute top-12 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-brandBlue via-brandPurple to-brandPink opacity-30"></div>
+                
+                <div class="text-center relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-24 h-24 mx-auto rounded-2xl glass-card flex items-center justify-center mb-6 relative">
+                        <div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-brandBlue to-brandPurple flex items-center justify-center text-white font-bold text-sm">1</div>
+                        <i class="fa-solid fa-comments text-3xl text-brandBlue"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 font-display">Descubrimiento</h3>
+                    <p class="text-xs text-gray-400">Entendemos tus necesidades y objetivos comerciales.</p>
+                </div>
+                
+                <div class="text-center relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-24 h-24 mx-auto rounded-2xl glass-card flex items-center justify-center mb-6 relative">
+                        <div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-brandBlue to-brandPurple flex items-center justify-center text-white font-bold text-sm">2</div>
+                        <i class="fa-solid fa-pen-ruler text-3xl text-brandPurple"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 font-display">Diseño</h3>
+                    <p class="text-xs text-gray-400">Creamos prototipos y arquitectura del sistema.</p>
+                </div>
+                
+                <div class="text-center relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-24 h-24 mx-auto rounded-2xl glass-card flex items-center justify-center mb-6 relative">
+                        <div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-brandBlue to-brandPurple flex items-center justify-center text-white font-bold text-sm">3</div>
+                        <i class="fa-solid fa-code text-3xl text-brandPink"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 font-display">Desarrollo</h3>
+                    <p class="text-xs text-gray-400">Construimos con las mejores tecnologías del mercado.</p>
+                </div>
+                
+                <div class="text-center relative" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-24 h-24 mx-auto rounded-2xl glass-card flex items-center justify-center mb-6 relative">
+                        <div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-brandBlue to-brandPurple flex items-center justify-center text-white font-bold text-sm">4</div>
+                        <i class="fa-solid fa-rocket text-3xl text-green-400"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 font-display">Lanzamiento</h3>
+                    <p class="text-xs text-gray-400">Desplegamos, monitoreamos y damos soporte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POR QUÉ ELEGIRNOS -->
+    <section id="beneficios" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-right">
+                <span class="text-brandBlue text-xs font-semibold uppercase tracking-widest">Eficiencia Comprobada</span>
+                <h2 class="text-4xl md:text-5xl font-black mt-3 mb-6 font-display leading-tight">
+                    Llevamos tu negocio al <span class="text-gradient">siguiente nivel</span> tecnológico
+                </h2>
+                <p class="text-gray-400 mb-8 leading-relaxed">
+                    Entendemos las necesidades reales del mercado. No solo entregamos código, entregamos soluciones prácticas que <span class="text-white font-semibold">reducen costos operativos</span> y <span class="text-white font-semibold">aumentan la productividad</span>.
+                </p>
+                <div class="space-y-5">
+                    <div class="flex items-start space-x-4 group">
+                        <div class="w-10 h-10 rounded-xl bg-brandBlue/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-circle-check text-brandBlue"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Desarrollo enfocado en resultados</h4>
+                            <p class="text-sm text-gray-400">Cada línea de código está pensada para generar valor real.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 group">
+                        <div class="w-10 h-10 rounded-xl bg-brandPurple/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-circle-check text-brandPurple"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Soporte técnico continuo</h4>
+                            <p class="text-sm text-gray-400">Actualizaciones y mantenimiento permanente.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 group">
+                        <div class="w-10 h-10 rounded-xl bg-brandPink/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-circle-check text-brandPink"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Escalabilidad garantizada</h4>
+                            <p class="text-sm text-gray-400">Tu sistema crece junto con tu empresa.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#contacto" class="inline-flex items-center gap-2 mt-8 text-brandBlue font-semibold hover:gap-3 transition-all">
+                    Solicitar cotización <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="relative" data-aos="fade-left">
+                <div class="absolute -inset-4 bg-gradient-to-r from-brandBlue/20 to-brandPurple/20 rounded-3xl blur-2xl"></div>
+                <div class="relative glass-card p-8 rounded-3xl glow-effect">
+                    <div class="flex items-center gap-3 mb-6 pb-6 border-b border-gray-800">
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <span class="text-xs text-gray-500 font-mono">aura-systems.ai</span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-brandBlue pl-4 py-1">
+                            <h4 class="font-bold text-lg font-display">Optimización de Procesos</h4>
+                            <p class="text-sm text-gray-400">Automatiza tareas manuales y ahorra horas de trabajo cada semana.</p>
+                        </div>
+                        <div class="border-l-4 border-brandPurple pl-4 py-1">
+                            <h4 class="font-bold text-lg font-display">Presencia Digital Sólida</h4>
+                            <p class="text-sm text-gray-400">Destaca frente a la competencia con herramientas corporativas.</p>
+                        </div>
+                        <div class="border-l-4 border-brandPink pl-4 py-1">
+                            <h4 class="font-bold text-lg font-display">IA Integrada</h4>
+                            <p class="text-sm text-gray-400">Potencia tus operaciones con modelos de inteligencia artificial.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-800 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                            <span class="text-xs text-gray-400">Sistema operativo</span>
+                        </div>
+                        <span class="text-xs text-brandBlue font-mono">v2.0.26</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="py-20">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="relative glass-card rounded-3xl p-10 md:p-16 text-center overflow-hidden" data-aos="zoom-in">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brandBlue/20 rounded-full blur-[100px]"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-brandPurple/20 rounded-full blur-[100px]"></div>
+                
+                <div class="relative z-10">
+                    <i class="fa-solid fa-bolt text-5xl text-brandBlue mb-6 animate-pulse"></i>
+                    <h2 class="text-3xl md:text-4xl font-black mb-4 font-display">
+                        ¿Listo para <span class="text-gradient">transformar</span> tu empresa?
+                    </h2>
+                    <p class="text-gray-400 max-w-xl mx-auto mb-8">
+                        Agenda una consultoría gratuita y descubre cómo la tecnología puede impulsar tu negocio.
+                    </p>
+                    <a href="#contacto" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-brandBlue to-brandPurple text-white font-bold hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 btn-shine">
+                        <i class="fa-solid fa-calendar-check"></i> Agendar Consultoría Gratis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CONTACTO -->
+    <section id="contacto" class="py-24 bg-gray-950/50">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <span class="text-brandBlue text-xs font-semibold uppercase tracking-widest">Contáctanos</span>
+                    <h2 class="text-4xl md:text-5xl font-black mt-3 mb-6 font-display">
+                        Hablemos de tu <span class="text-gradient">Proyecto</span>
+                    </h2>
+                    <p class="text-gray-400 mb-8">
+                        Déjanos tus datos y nos pondremos en contacto contigo en menos de 24 horas.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <a href="mailto:soporte.aurasystems@gmail.com" class="flex items-center gap-4 glass-card p-4 rounded-2xl hover:border-brandBlue/50 transition group">
+                            <div class="w-12 h-12 rounded-xl bg-brandBlue/10 flex items-center justify-center text-brandBlue group-hover:scale-110 transition">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase tracking-wider">Email</div>
+                                <div class="text-sm text-white font-medium">soporte.aurasystems@gmail.com</div>
+                            </div>
+                        </a>
+                        
+                        <div class="flex items-center gap-4 glass-card p-4 rounded-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-brandPurple/10 flex items-center justify-center text-brandPurple">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase tracking-wider">Respuesta</div>
+                                <div class="text-sm text-white font-medium">Menos de 24 horas</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 glass-card p-4 rounded-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-brandPink/10 flex items-center justify-center text-brandPink">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase tracking-wider">Privacidad</div>
+                                <div class="text-sm text-white font-medium">Tus datos están seguros</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-8 md:p-10 rounded-3xl shadow-2xl" data-aos="fade-left">
+                    <form class="space-y-6" id="contactForm">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Nombre completo *</label>
+                            <input type="text" required placeholder="Tu nombre"
+                                class="form-input w-full bg-brandDark border border-gray-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brandBlue transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Correo Electrónico *</label>
+                            <input type="email" required placeholder="tu@empresa.com"
+                                class="form-input w-full bg-brandDark border border-gray-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brandBlue transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Servicio de interés</label>
+                            <select class="form-input w-full bg-brandDark border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brandBlue transition">
+                                <option>Software a la medida</option>
+                                <option>Página web funcional</option>
+                                <option>Asistencia con IA</option>
+                                <option>Consultoría general</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Mensaje o Requerimiento *</label>
+                            <textarea rows="4" required placeholder="Cuéntanos sobre tu proyecto..."
+                                class="form-input w-full bg-brandDark border border-gray-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brandBlue transition resize-none"></textarea>
+                        </div>
+                        <button type="submit" 
+                            class="w-full py-4 rounded-xl bg-gradient-to-r from-brandBlue to-brandPurple text-white font-bold hover:opacity-90 transition shadow-lg shadow-cyan-500/20 btn-shine flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
+                        </button>
+                        <p class="text-xs text-gray-500 text-center">Al enviar aceptas nuestra política de privacidad</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brandBlue via-brandPurple to-brandPink flex items-center justify-center">
+                            <i class="fa-solid fa-cube text-white font-bold"></i>
+                        </div>
+                        <span class="text-xl font-extrabold tracking-wider text-white font-display">AURA<span class="text-gradient">SYSTEMS</span></span>
+                    </div>
+                    <p class="text-sm text-gray-400 max-w-md">
+                        Transformamos empresas con software a la medida, desarrollo web e inteligencia artificial. Tu socio tecnológico de confianza.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4 font-display">Servicios</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#servicios" class="hover:text-brandBlue transition">Software</a></li>
+                        <li><a href="#servicios" class="hover:text-brandBlue transition">Web</a></li>
+                        <li><a href="#servicios" class="hover:text-brandBlue transition">IA</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4 font-display">Contacto</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="mailto:soporte.aurasystems@gmail.com" class="hover:text-brandBlue transition"><i class="fa-solid fa-envelope mr-2"></i>Email</a></li>
+                        <li><a href="#contacto" class="hover:text-brandBlue transition"><i class="fa-solid fa-comments mr-2"></i>Soporte</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+                <p>&copy; 2026 Aura Systems. Todos los derechos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-brandBlue transition">Privacidad</a>
+                    <a href="#" class="hover:text-brandBlue transition">Términos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-gradient-to-br from-brandBlue to-brandPurple text-white shadow-lg shadow-cyan-500/30 z-40 hover:scale-110 transition">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // AOS
+        AOS.init({ duration: 800, once: true, offset: 100 });
+        
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+            
+            // Header scroll
+            const header = document.getElementById('header');
+            if (scrollTop > 50) {
+                header.classList.add('bg-brandDark/80', 'backdrop-blur-md', 'border-gray-800');
+            } else {
+                header.classList.remove('bg-brandDark/80', 'backdrop-blur-md', 'border-gray-800');
+            }
+            
+            // Back to top
+            const backBtn = document.getElementById('back-to-top');
+            if (scrollTop > 500) backBtn.classList.add('show');
+            else backBtn.classList.remove('show');
+        });
+        
+        // Back to top
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Mobile menu
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => document.getElementById('mobileMenu').classList.add('hidden'));
+        });
+        
+        // Cursor personalizado
+        const cursorDot = document.getElementById('cursorDot');
+        const cursorOutline = document.getElementById('cursorOutline');
+        let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+        });
+        
+        function animateCursor() {
+            outlineX += (mouseX - outlineX) * 0.15;
+            outlineY += (mouseY - outlineY) * 0.15;
+            cursorOutline.style.left = outlineX + 'px';
+            cursorOutline.style.top = outlineY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+        
+        // Hover cursor
+        document.querySelectorAll('a, button, input, textarea, select').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.width = '60px';
+                cursorOutline.style.height = '60px';
+                cursorOutline.style.borderColor = 'rgba(0, 240, 255, 0.8)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.width = '40px';
+                cursorOutline.style.height = '40px';
+                cursorOutline.style.borderColor = 'rgba(0, 240, 255, 0.5)';
+            });
+        });
+        
+        // Partículas
+        const particlesContainer = document.getElementById('particles');
+        function createParticles() {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 4 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 15 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.background = Math.random() > 0.5 ? '#00F0FF' : '#7000FF';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+        
+        // Contador animado
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const animateCounter = (el) => {
+            const target = +el.dataset.target;
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    el.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    el.textContent = target + (target >= 90 ? '' : '+');
+                }
+            };
+            updateCounter();
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        statNumbers.forEach(num => observer.observe(num));
+        
+        // Tilt effect
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -3;
+                const rotateY = ((x - centerX) / centerX) * 3;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+        
+        // Form submit
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Mensaje Enviado!';
+                btn.classList.remove('from-brandBlue', 'to-brandPurple');
+                btn.classList.add('from-green-500', 'to-green-600');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.add('from-brandBlue', 'to-brandPurple');
+                    btn.classList.remove('from-green-500', 'to-green-600');
+                    btn.disabled = false;
+                    e.target.reset();
+                }, 2500);
+            }, 1500);
+        });
+        
+        // Smooth scroll para enlaces
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
